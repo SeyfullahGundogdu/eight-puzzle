@@ -9,10 +9,8 @@ Our goal matrix has the following layout:
 
 There are number of methods for solving this problem. Namely,
 * [BFS](https://en.wikipedia.org/wiki/Breadth-first_search)
-* [DFS](https://en.wikipedia.org//wiki/Depth-first_search)
 * [A*](https://en.wikipedia.org/wiki/A*_search_algorithm)  
 
 We have 2 heuristic functions that we use for A* algorithm, one of them(h1) is simply counting the number of pieces which are wrongly placed, and h2 algorithm calculates the manhattan distance for each piece, and uses their sum for choosing the best candidate. The lower the sum, the closer we are to the solution.  
 However, we _can't_ solve 8 puzzle problem for any arbitrary initial and goal state.
 
-DFS algorithm is unimplemented (for now).

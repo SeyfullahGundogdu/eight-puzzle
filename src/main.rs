@@ -296,7 +296,7 @@ fn h2(init_state: [i32; 9], goal_state: [i32; 9]) -> i32 {
         let h_x = abs(goal_pos % 3 - init_pos % 3);
         h += h_y + h_x;
     }
-    h as i32
+    h
 }
 
 //simple absolute value function
@@ -310,7 +310,7 @@ fn abs(num: i32) -> i32 {
 fn a_star<F>(
     init_state: [i32; 9],
     goal_state: [i32; 9],
-    heurictic_method: F,
+    heuristic_method: F,
 ) -> Option<Vec<Rc<Node>>>
 where
     F: Fn([i32; 9], [i32; 9]) -> i32,
@@ -334,7 +334,7 @@ where
     while !queue.is_empty() {
         let mut best_choice = i32::MAX;
         for elem in queue.iter() {
-            let h = heurictic_method(elem.clone().node_state.state, goal_state);
+            let h = heuristic_method(elem.clone().node_state.state, goal_state);
             if h == 0 {
                 history.push(elem.clone());
                 return Some(history);
@@ -348,7 +348,7 @@ where
         let mut index = usize::MAX;
         for elem in queue.iter() {
             let f =
-                elem.node_state.depth + heurictic_method(elem.clone().node_state.state, goal_state);
+                elem.node_state.depth + heuristic_method(elem.clone().node_state.state, goal_state);
             if f == best_choice {
                 index = queue.iter().position(|x| x.node_state == elem.node_state).unwrap();
                 break;
